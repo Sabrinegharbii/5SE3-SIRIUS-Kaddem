@@ -35,7 +35,7 @@ class ContratStaticTest {
     }
 
     @Test
-    public void testRetrieveAllContrats() {
+    void testRetrieveAllContrats() {
         // Create a list of sample Contrats
         List<Contrat> sampleContrats = new ArrayList<>();
 
@@ -64,7 +64,7 @@ class ContratStaticTest {
     }
 
     @Test
-    public void testAddContrat() {
+    void testAddContrat() {
         // Create a sample Contrat to add
         Contrat newContrat = new Contrat();
         newContrat.setIdContrat(3);
@@ -95,7 +95,7 @@ class ContratStaticTest {
 
     }
     @Test
-    public void testUpdateContrat() {
+     void testUpdateContrat() {
         // Create a sample Contrat to update
         Contrat existingContrat = new Contrat();
         existingContrat.setIdContrat(1);
@@ -116,7 +116,7 @@ class ContratStaticTest {
         System.err.println("testUpdateContrat : SUCCESS");
     }
     @Test
-    public void testRetrieveContrat() {
+    void testRetrieveContrat() {
         // Create a sample Contrat with a known ID
         int id = 1;
         Contrat sampleContrat = new Contrat();
