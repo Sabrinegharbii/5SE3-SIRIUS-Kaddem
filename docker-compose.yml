@@ -1,30 +1,9 @@
-version: '3'
+version: '3.8'
 
 services:
-  mysql:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: kaddem_db
-    ports:
-      - "3306:3306"
-
-  app:
-    build:
-      context: ./path/to/your/app
-    ports:
-      - "8089:8089"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/kaddem_db
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+  dev-phpmyadmin:
+    container_name: dev-phpmyadmin
+    image: phpmyadmin/phpmyadmin:f10ef545e0bb
     ports:
       - "7098:80"
-    environment:
-      PMA_HOST: mysql
-      PMA_PORT: 3306
-      PMA_USER: root
-      PMA_PASSWORD: root
+    restart: always
