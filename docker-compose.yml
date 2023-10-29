@@ -2,7 +2,7 @@ version: "3"
 services:
   springboot-app:
     container_name: khaddem-app
-    image: ayoub123/alpine:1.0.0
+    image: ayoubbelhadjyahia5se3sirius/alpine:1.0.0
     restart: always
     build: .
     ports:
