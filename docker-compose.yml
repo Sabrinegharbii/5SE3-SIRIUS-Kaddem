@@ -13,4 +13,4 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://http://192.168.33.10:7098/kaddem_db
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 
+      SPRING_DATASOURCE_PASSWORD: root
