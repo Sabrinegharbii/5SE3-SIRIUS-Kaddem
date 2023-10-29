@@ -1,9 +1,14 @@
-version: '3.8'
-
 services:
-  dev-phpmyadmin:
-    container_name: dev-phpmyadmin
-    image: phpmyadmin/phpmyadmin:f10ef545e0bb
+  mysql:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: khaddem
+  app:
+    build: .
     ports:
-      - "7098:80"
-    restart: always
+      - "8089:8089"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://http://192.168.33.10:7098/khaddem
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
