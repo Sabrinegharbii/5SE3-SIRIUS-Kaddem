@@ -1,24 +1,16 @@
-version: "3"
+version: '3'
+
 services:
-  springboot-app:
-    container_name: khaddem-app
-    image: ayoubbelhadjyahia5se3sirius/alpine:1.0.0
-    restart: always
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: kaddem_db
+  app:
     build: .
     ports:
-      - 8000-8999:8089
+      - "8089:8089"
     environment:
-      MYSQL_HOST: mysqldb
-      MYSQL_USER: root
-      MYSQL_PASSWORD:
-      MYSQL_PORT: 3306
-  mysqldb:
-    container_name: mysqldb
-    image: mysql
-    volumes:
-      -  /home/user/5SE3/DEVOPS/Projet/db:/var/lib/mysql
-    ports:
-      - 3307:3306
-    environment:
-      MYSQL_DATABASE: test
-      MYSQL_ROOT_PASSWORD: root
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/kaddem_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 
