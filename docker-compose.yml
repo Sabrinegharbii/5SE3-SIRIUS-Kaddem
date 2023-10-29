@@ -1,7 +1,7 @@
 version: "3"
 services:
   springboot-app:
-    container_name: kaddem-app
+    container_name: khaddem-app
     image: ayoub123/alpine:1.0.0
     restart: always
     build: .
@@ -16,7 +16,7 @@ services:
     container_name: mysqldb
     image: mysql
     volumes:
-      -  /home/user/5SE2/DEVOPS/Projet/db:/var/lib/mysql
+      -  /home/user/5SE3/DEVOPS/Projet/db:/var/lib/mysql
     ports:
       - 3307:3306
     environment:
