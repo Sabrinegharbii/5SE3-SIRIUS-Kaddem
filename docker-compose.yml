@@ -1,14 +1,25 @@
+version: "3"
+
 services:
-  mysql:
-    image: phpmyadmin/phpmyadmin
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: khaddem
-  app:
+  springboot-app:
+    image: ayoubbelhadjyahia5se3sirius/alpine:1.0.0
+    restart: always
     build: .
     ports:
-      - "8089:8089"
+      - 8000-8999:8089
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://http://192.168.33.10:7098/khaddem
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      MYSQL_HOST: mysqldb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_PORT: 3306
+
+  mysqldb:
+    container_name: mysqldb
+    image: mysql
+    volumes:
+      - /home/User/DESKTOP/db:/var/lib/mysql
+    ports:
+      - 3307:3306
+    environment:
+       MYSQL_DATABASE: test
+       MYSQL_ROOT_PASSWORD: root
