@@ -12,6 +12,8 @@ import java.util.List;
 @Tag(name = "Gestion des universités")
 @RestController
 @RequestMapping("/universite")
+@CrossOrigin(origins = "*")
+
 
 public class UniversiteRestController {
     @Autowired
