@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM openjdk:11-alpine
 
 ADD target/khaddem-*.jar /khaddem.jar
 
