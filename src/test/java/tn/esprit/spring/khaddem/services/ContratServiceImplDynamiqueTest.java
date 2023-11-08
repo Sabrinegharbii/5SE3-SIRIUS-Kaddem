@@ -12,7 +12,7 @@ import java.util.List;
 
 @SpringBootTest
 
-class ContratServiceImplTestDynamique {
+class ContratServiceImplDynamiqueTest {
 
     @Autowired
 
