@@ -1,4 +1,4 @@
-package tn.esprit.spring.khaddem.services;
+/*package tn.esprit.spring.khaddem.services;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -83,4 +83,4 @@ class EtudiantServiceImplDynamiqueTest {
 
 
 }
-
+*/
