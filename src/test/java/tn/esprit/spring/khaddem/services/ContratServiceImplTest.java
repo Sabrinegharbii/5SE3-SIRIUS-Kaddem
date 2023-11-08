@@ -10,9 +10,6 @@ import tn.esprit.spring.khaddem.entities.Etudiant;
 import tn.esprit.spring.khaddem.entities.Specialite;
 import tn.esprit.spring.khaddem.repositories.ContratRepository;
 import tn.esprit.spring.khaddem.repositories.EtudiantRepository;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.mockito.Mockito.*;
@@ -57,10 +54,9 @@ class ContratStaticTest {
         Contrat contrat2 = new Contrat();
         contrat2.setIdContrat(2);
         contrat2.setMontantContrat(2000);
-        // Set other properties as needed
+
         sampleContrats.add(contrat2);
 
-        // Mock the behavior of the contratRepository to return the sampleContrats when retrieveAllContrats is called
         when(contratRepository.findAll()).thenReturn(sampleContrats);
 
         // Call the service method

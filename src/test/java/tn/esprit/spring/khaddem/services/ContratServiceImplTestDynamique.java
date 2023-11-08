@@ -1,8 +1,8 @@
 package tn.esprit.spring.khaddem.services;
 
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.khaddem.entities.Contrat;
@@ -20,13 +20,14 @@ class ContratServiceImplTestDynamique {
 
     @Autowired
     private ContratRepository contratRepository;
+    @Order(1)
     @Test
     void addContrat() {
         Contrat cont = new Contrat();
-        cont.setIdContrat(1);
+        cont.setMontantContrat(700);
         Contrat contrat = contratService.addContrat(cont);
         assertNotNull(contrat);
-        assertEquals(1, contrat.getIdContrat());
+        assertEquals(700, contrat.getMontantContrat());
         System.out.println("Add dynamique : Ok");
     }
     @Test
