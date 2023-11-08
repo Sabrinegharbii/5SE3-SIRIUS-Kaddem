@@ -1,4 +1,4 @@
-/*package tn.esprit.spring.khaddem.services;
+package tn.esprit.spring.khaddem.services;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -71,16 +71,11 @@ class EtudiantServiceImplDynamiqueTest {
         assertEquals(updatedetudiant.getNomE(),retrievedetudiant.getNomE());
     }
 
-    @Test
-     void testRemoveEtudiant() {
-       etudiantRepository.deleteById(4);
-       assertFalse(etudiantRepository.existsById(4));
 
-    }
 
 
 
 
 
 }
-*/
+
