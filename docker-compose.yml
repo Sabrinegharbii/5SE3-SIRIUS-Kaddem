@@ -24,3 +24,9 @@ services:
     environment:
       MYSQL_DATABASE: test
       MYSQL_ROOT_PASSWORD: root
+
+  angular-app:
+    image: sabrinegharbi5se3sirius/alpine:1.0.0-Angular
+    build: .
+    ports:
+      - "8001:80"
