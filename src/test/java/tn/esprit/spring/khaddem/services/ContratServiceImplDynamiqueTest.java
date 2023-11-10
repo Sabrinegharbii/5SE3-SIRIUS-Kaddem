@@ -30,14 +30,12 @@ class ContratServiceImplDynamiqueTest {
         assertEquals(700, contrat.getMontantContrat());
         System.out.println("Add dynamique : Ok");
     }
+
     @Test
     void retrieveAllContrat() {
         List<Contrat> contrats = contratService.retrieveAllContrats();
         assertFalse(contrats.isEmpty());
-        System.out.println("Liste des Contrats dans la table de Contrat :");
-        for (Contrat contrat : contrats) {
-            System.err.println("ID : " + contrat.getIdContrat()+ ", Montant : " + contrat.getMontantContrat());
-        }
+        System.out.println("RetriveAll dynamique : Ok");
     }
     @Test
     void updateContrat() {
