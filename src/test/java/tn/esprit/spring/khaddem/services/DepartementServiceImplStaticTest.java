@@ -32,15 +32,16 @@ class DepartementServiceImplStaticTest {
     }
     @Test
     public void testRetrieveAllDepartements() {
-        // Mocking the behavior of the departementRepository
-        Mockito.when(departementRepository.findAll()).thenReturn(Arrays.asList(new Departement(), new Departement()));
+        // Arrange
+        List<Departement> mockedDepartements = Arrays.asList(new Departement(), new Departement());
+        Mockito.when(departementRepository.findAll()).thenReturn(mockedDepartements);
 
-        // Calling the method to be tested
+        // Act
         List<Departement> result = departementService.retrieveAllDepartements();
 
-        // Verifying that the method was called and the correct result was returned
+        // Assert
         Mockito.verify(departementRepository, Mockito.times(1)).findAll();
-        assertEquals(2, result.size());
+        assertEquals(mockedDepartements.size(), result.size());
     }
 
     @Test
@@ -69,39 +70,36 @@ class DepartementServiceImplStaticTest {
     }
 
 
-//    @Test
-//    public void testRetrieveDepartement() {
-//        // Mocking the behavior of the departementRepository
-//        Mockito.when(departementRepository.findById(1)) .thenReturn(Optional.of(new Departement()));
-//
-//        // Calling the method to be tested
-//        Departement result = departementService.retrieveDepartement(1);
-//
-//        // Verifying that the method was called and the correct result was returned
-//        Mockito.verify(departementRepository, Mockito.times(1)).findById(1);
-//        assertEquals(new Departement(), result);
-//    }
+@Test
+void testRetrieveDepartementsByUniversite() {
+    // Arrange
+    Integer idUniversite = 1; // Replace with the actual id
+    Universite universite = new Universite();
+    universite.setIdUniversite(idUniversite);
 
-    @Test
-    void testRetrieveDepartementsByUniversite() {
-        // Mocking the behavior of the universiteRepository
-        Integer idUniversite = 1; // Replace with the actual id
-        Universite universite = new Universite();
-        universite.setIdUniversite(idUniversite);
+    List<Departement> departements = Arrays.asList(new Departement(), new Departement());
 
-        List<Departement> departements = Arrays.asList(new Departement(), new Departement());
+    // Mock the behavior of findById
+    Mockito.when(universiteRepository.findById(idUniversite)).thenReturn(Optional.of(universite));
 
-        Mockito.when(universiteRepository.findById(idUniversite)).thenReturn(Optional.of(universite));
-        Mockito.when(universite.getDepartements()).thenReturn(departements);
+    // Create a spy on the real object to avoid issues with final or private methods
+    Universite universiteSpy = Mockito.spy(universite);
+    Mockito.doReturn(departements).when(universiteSpy).getDepartements();
 
-        // Calling the method to be tested
-        List<Departement> result = departementService.retrieveDepartementsByUniversite(idUniversite);
+    // Replace the real object with the spy
+    Mockito.when(universiteRepository.findById(idUniversite)).thenReturn(Optional.of(universiteSpy));
 
-        // Verifying that the method was called and the correct result was returned
-        Mockito.verify(universiteRepository, Mockito.times(1)).findById(idUniversite);
-        assertEquals(departements, result);
+    // Act
+    List<Departement> result = departementService.retrieveDepartementsByUniversite(idUniversite);
 
-        System.err.println("Departements retrieved by university successfully");
-    }
+    // Assert
+    Mockito.verify(universiteRepository, Mockito.times(1)).findById(idUniversite);
+    assertEquals(departements, result);
+
+    // Additional check for the number of departements
+    assertEquals(departements.size(), result.size(), "Number of retrieved departements does not match");
+
+    System.err.println("Departements retrieved by university successfully");
+}
 
 }
