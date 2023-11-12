@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Contrat implements Serializable {
@@ -21,6 +21,7 @@ public class Contrat implements Serializable {
     private Specialite specialite;
     private Boolean archived;
     private Integer montantContrat;
+    @JsonIgnore
     @ManyToOne
    // @JsonIgnore
     private  Etudiant etudiant;
