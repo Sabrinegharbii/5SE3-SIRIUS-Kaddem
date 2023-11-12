@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import tn.esprit.spring.khaddem.entities.Departement;
 
@@ -11,6 +12,7 @@ import tn.esprit.spring.khaddem.entities.Universite;
 import tn.esprit.spring.khaddem.repositories.DepartementRepository;
 import tn.esprit.spring.khaddem.repositories.UniversiteRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -141,6 +143,26 @@ System.out.println("ggggll");
         // Ajoutez d'autres assertions pour vérifier les attributs de l'objet résultant si nécessaire
     }
 
+    @Test
+    @Transactional
+    public void testAssignUniversiteToDepartement() {
+        // Given
+        Integer universiteId = 1;
+        Integer departementId = 2;
 
+        Universite universite = new Universite(); // Create a mock or use a real instance
+        Departement departement = new Departement(); // Create a mock or use a real instance
+
+        Mockito.when(universiteRepository.findById(universiteId)).thenReturn(Optional.of(universite));
+        Mockito.when(departementRepository.findById(departementId)).thenReturn(Optional.of(departement));
+
+        // When
+        universiteService.assignUniversiteToDepartement(universiteId, departementId);
+
+        // Then
+        Mockito.verify(universiteRepository, Mockito.times(1)).findById(universiteId);
+        Mockito.verify(departementRepository, Mockito.times(1)).findById(departementId);
+        Mockito.verify(universiteRepository, Mockito.times(1)).save(universite);
+    }
 }
 

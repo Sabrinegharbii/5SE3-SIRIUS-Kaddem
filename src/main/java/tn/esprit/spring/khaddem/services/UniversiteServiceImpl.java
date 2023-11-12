@@ -8,6 +8,7 @@ import tn.esprit.spring.khaddem.entities.Universite;
 import tn.esprit.spring.khaddem.repositories.DepartementRepository;
 import tn.esprit.spring.khaddem.repositories.UniversiteRepository;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,9 +43,19 @@ public class UniversiteServiceImpl implements  IUniversiteService{
 @Override
     @Transactional
     public void assignUniversiteToDepartement(Integer universiteId, Integer departementId) {
-        Universite universite =universiteRepository.findById(universiteId).orElse(null);
-        Departement departement=departementRepository.findById(departementId).orElse(null);
+    Universite universite = universiteRepository.findById(universiteId).orElse(null);
+    Departement departement = departementRepository.findById(departementId).orElse(null);
+
+    if (universite != null && departement != null) {
+        if (universite.getDepartements() == null) {
+            universite.setDepartements(new ArrayList<>());
+        }
+
         universite.getDepartements().add(departement);
-universiteRepository.save(universite);
+        universiteRepository.save(universite);
+    } else {
+        System.out.println("hhhh");
+    }
+
     }
 }
