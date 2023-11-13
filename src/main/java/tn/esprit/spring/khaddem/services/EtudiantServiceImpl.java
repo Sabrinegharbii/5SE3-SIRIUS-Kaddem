@@ -105,6 +105,7 @@ public class EtudiantServiceImpl implements IEtudiantService{
     @Override
     public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
         Departement departement=departementRepository.findById(idDepartement).get();
+
         return departement.getEtudiants();
     }
 

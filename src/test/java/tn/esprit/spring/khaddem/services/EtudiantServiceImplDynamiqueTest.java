@@ -10,7 +10,6 @@ import tn.esprit.spring.khaddem.entities.Option;
 import tn.esprit.spring.khaddem.repositories.EtudiantRepository;
 
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
