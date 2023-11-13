@@ -2,6 +2,8 @@ package tn.esprit.spring.khaddem.services;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring.khaddem.entities.*;
@@ -12,12 +14,16 @@ import tn.esprit.spring.khaddem.repositories.EtudiantRepository;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
 @AllArgsConstructor
 public class EtudiantServiceImpl implements IEtudiantService{
+
+    private static final Logger logger = LoggerFactory.getLogger(EtudiantServiceImpl.class);
 
     EtudiantRepository etudiantRepository;
 
@@ -45,8 +51,15 @@ public class EtudiantServiceImpl implements IEtudiantService{
 
     @Override
     public Etudiant retrieveEtudiant(Integer idEtudiant) {
-        return etudiantRepository.findById(idEtudiant).get();
+        Optional<Etudiant> optionalEtudiant = etudiantRepository.findById(idEtudiant);
+
+        if (optionalEtudiant.isPresent()) {
+            return optionalEtudiant.get();
+        } else {
+            return null;
+        }
     }
+
 
     @Override
     public void removeEtudiant(Integer idEtudiant) {
@@ -55,11 +68,24 @@ public class EtudiantServiceImpl implements IEtudiantService{
 
     @Override
     public void assignEtudiantToDepartement(Integer etudiantId, Integer departementId) {
-        Etudiant e = etudiantRepository.findById(etudiantId).get();
-        Departement d= departementRepository.findById(departementId).get();
-        e.setDepartement(d);
-        etudiantRepository.save(e);
+        Optional<Etudiant> optionalEtudiant = etudiantRepository.findById(etudiantId);
+        Optional<Departement> optionalDepartement = departementRepository.findById(departementId);
+
+        if (optionalEtudiant.isPresent() && optionalDepartement.isPresent()) {
+            Etudiant e = optionalEtudiant.get();
+            Departement d = optionalDepartement.get();
+            e.setDepartement(d);
+            etudiantRepository.save(e);
+        } else {
+            if (!optionalEtudiant.isPresent()) {
+                logger.error("Etudiant with ID {} not found.", etudiantId);
+            }
+            if (!optionalDepartement.isPresent()) {
+                logger.error("Departement with ID {} not found.", departementId);
+            }
+        }
     }
+
 
     @Override
     public List<Etudiant> findByDepartementIdDepartement(Integer idDepartement) {
@@ -104,9 +130,14 @@ public class EtudiantServiceImpl implements IEtudiantService{
 
     @Override
     public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
-        Departement departement=departementRepository.findById(idDepartement).get();
+        Optional<Departement> optionalDepartement = departementRepository.findById(idDepartement);
 
-        return departement.getEtudiants();
+        if (optionalDepartement.isPresent()) {
+            Departement departement = optionalDepartement.get();
+            return departement.getEtudiants();
+        } else {
+            return Collections.emptyList();
+        }
     }
 
 
