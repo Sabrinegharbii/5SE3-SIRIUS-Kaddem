@@ -21,8 +21,8 @@ public class ContratRestController {
     @GetMapping("/retrieve-all-contrats")
     @ResponseBody
     public List<Contrat> getContrats() {
-        List<Contrat> ListContrats = contratService.retrieveAllContrats();
-        return ListContrats;
+        List<Contrat> contratList = contratService.retrieveAllContrats();
+        return contratList;
     }
 
     // http://localhost:8089/Kaddem/contrat/retrieve-contrat/8
@@ -44,8 +44,8 @@ public class ContratRestController {
     @PutMapping("/update-contrat")
     @ResponseBody
     public Contrat updateEtudiant(@RequestBody Contrat cont) {
-        Contrat c= contratService.updateContrat(cont);
-        return c;
+        Contrat contart= contratService.updateContrat(cont);
+        return contart;
     }
 
     // http://localhost:8089/Kaddem/contrat/addAndAffectContratToEtudiant/salah/ahmed
