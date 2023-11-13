@@ -1,23 +1,23 @@
-//package tn.esprit.spring.khaddem.services;
-//
-//
-//import org.junit.jupiter.api.Order;
-//import org.junit.jupiter.api.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import tn.esprit.spring.khaddem.entities.Contrat;
-//import tn.esprit.spring.khaddem.repositories.ContratRepository;
-//import static org.junit.jupiter.api.Assertions.*;
-//import java.util.List;
-//
-//@SpringBootTest
-//
-//class ContratServiceImplDynamiqueTest {
-//
+// package tn.esprit.spring.khaddem.services;
+
+
+// import org.junit.jupiter.api.Order;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.context.SpringBootTest;
+// import tn.esprit.spring.khaddem.entities.Contrat;
+// import tn.esprit.spring.khaddem.repositories.ContratRepository;
+// import static org.junit.jupiter.api.Assertions.*;
+// import java.util.List;
+
+// @SpringBootTest
+
+// class ContratServiceImplDynamiqueTest {
+
 //    @Autowired
-//
+
 //    private ContratServiceImpl contratService;
-//
+
 //    @Autowired
 //    private ContratRepository contratRepository;
 //    @Order(1)
@@ -30,7 +30,7 @@
 //        assertEquals(700, contrat.getMontantContrat());
 //        System.out.println("Add dynamique : Ok");
 //    }
-//
+
 //    @Test
 //    void retrieveAllContrat() {
 //        List<Contrat> contrats = contratService.retrieveAllContrats();
@@ -51,5 +51,5 @@
 //        assertEquals(updatedMontant, retrievedDepartement.getMontantContrat());
 //        System.err.println("Update Contrat : OK !");
 //    }
-//
-//}
+
+// }
